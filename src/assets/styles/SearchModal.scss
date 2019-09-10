@@ -1,0 +1,146 @@
+@import 'partials/variables';
+@import 'partials/utilities';
+
+.modal-search {
+  // padding: 10px;
+  margin: 20px 0;
+
+  border: 1px solid #EDF0F4;
+  border-radius: 5px;
+  -webkit-box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 2px 2px 8px 0 rgba(0, 0, 0, 0.2);
+
+  &__header {
+    padding: 10px;
+    border-bottom: 1px solid #EDF0F4;
+  }
+
+  &__headline {
+    margin: 0;
+  }
+
+  &__body {
+    padding: 10px;
+    
+    // Override .wires-search__input styles declared in DatabrowseSearchBar.scss
+    .wires-search__input {
+      width: 100%;
+      min-width: 200px;
+
+      &--field {
+        width: calc(100% - 178px);
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// react-select restyling (need to use important -_-)
+.wires-search-operator {
+  display: block;
+
+  max-width: 75px;
+
+  margin: 2px 0 2px 0 !important;
+  
+  color: $black !important;
+
+
+  &:focus {
+    // outline: 1px solid red !important;
+  }
+
+  &__menu-notice {
+    font-size: 12px !important;
+  }
+
+  &__control {
+    max-height: 30px !important;
+    min-height: 30px !important;
+    background-color: $white !important;
+    border: 1px solid $borderGrey !important;
+
+    &:hover {
+      cursor: pointer !important;
+      border: none;
+    }
+
+    &--is-focused {
+      box-shadow: none !important;
+    }
+
+    input {
+      font-family: 'SF Pro Display' !important;
+      color: $mainBlue !important;
+    }
+  }
+
+  &__value-container {
+    min-height: 20px !important;
+    padding: 0 5px !important;
+  }
+
+  &__single-value,
+  &__placeholder {
+    font-size: 12px;
+    font-weight: 700;
+    color: $mainGrey !important;
+  }
+
+  &__indicator-separator {
+    // display: none !important;
+    margin: 0 !important;
+    background: $borderGrey !important;
+  }
+
+  &__indicator {
+    padding: 3px !important;
+
+    svg {
+      fill: $mainGrey;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    // bottom: -5px !important;
+    z-index: 10001 !important;
+
+    margin-top: 0 !important;
+
+    background: $lightGrey !important;
+    
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.20) !important;
+    border: none !important;
+    border-radius: 5px !important;
+  }
+
+  &__group {
+    // outline: 1px solid blue;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  &__option {
+    padding: 2px 5px;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: $mainGrey !important;
+    cursor: pointer !important;
+
+    &--is-focused {
+      background: rgba(78, 121, 172, 0.10) !important;
+      color: $black !important;
+    }
+
+    &:hover {
+      background-color: $lightBlue !important;
+    }
+
+    &--is-selected,
+    &--is-selected:hover {
+      color: $lightGrey !important;
+      background: $mainBlue !important;
+    }
+  }
+}

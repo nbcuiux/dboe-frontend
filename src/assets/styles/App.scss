@@ -1,0 +1,70 @@
+@import 'partials/fonts';
+@import 'partials/variables';
+@import 'partials/utilities';
+
+body {
+  font-family: 'SF Pro Display';
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: $lightBlue;
+}
+
+* { box-sizing: border-box; }
+
+a {
+  text-decoration: none;
+}
+
+p {
+  color: $black;
+}
+
+.header {
+  &__container {
+    &--fixed {
+      position: fixed;
+      top: 50px;
+      left: 0;
+
+      width: 100%;
+    }
+  }
+}
+
+.results {
+  &__headline {
+    color: $black;
+    font-size: 24px;
+    font-weight: 300;
+
+    span {
+      color: $mainGrey;
+      font-size: 18px;
+      font-weight: 300;
+    }
+  }
+}
+
+.content-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  @include mq($min-width: $lgBreak) {
+    padding: 0 100px;
+  }
+}
+
+.container {
+  padding: 20px;
+  margin-top: 90px;
+
+  @include mq($max-width: $smBreak) {
+    padding: 20px 10px;
+    margin-top: 80px;
+  }
+}
+
+

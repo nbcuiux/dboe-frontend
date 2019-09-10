@@ -1,0 +1,378 @@
+@import 'partials/variables';
+@import 'partials/utilities';
+
+.wires-search {
+  @extend .clearfix;
+  position: relative;
+
+  z-index: 1000;
+
+  width: 100%;
+
+  background: $white;
+
+  &__btn {
+    display: block;
+    width: 50px;
+    
+    color: $mainGrey;
+    font-size: 24px;
+    text-align: center;
+
+    background: $lightGrey;
+
+    box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.20);
+    border: none;
+    border-radius: 5px;
+
+    user-select: none;
+
+    transition: transform 250ms ease;
+
+    &:hover {
+      transform: translate(-1px, -1px);
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+
+    @include mq($max-width: $smBreak) {
+      width: 40px;
+      padding: 0 10px;
+
+      img {
+        width: 16px;
+        height: auto;
+      }
+    }
+
+    &--wrapper {
+      float: left;
+      width: 91px;
+
+      padding: 15px 20px;
+
+      border-right: 1px solid $lightBlue;
+
+      @include mq($max-width: $smBreak) {
+        width: 61px;
+        padding: 15px 10px;
+      }
+    }
+
+    &--multi {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+
+      padding: 8px 16px;
+
+      color: $mainGrey;
+      font-size: 12px;
+      font-weight: 700;
+
+      background: $lightGrey;
+
+      border: none;
+      border-radius: 5px;
+
+      box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+      transition: transform 250ms ease;
+
+      &:hover {
+        transform: translate(-1px, -1px);
+        cursor: pointer;
+      }
+
+      &:active {
+        transform: translate(1px, 1px);
+      }
+
+      &.enabled {
+        // border: 1px solid $mainBlue;
+        // box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.2);
+        font-style: italic;
+        box-shadow: 0 0 14px 0 rgba(78, 121, 172, 0.6);
+
+        /* &::before {
+          position: absolute;
+          left: -50px;
+          top: 8px;
+
+          display: block;
+
+          width: 50px;
+
+          color: $black;
+          font-style: italic;
+          font-weight: 400;
+          content: 'Enabled';
+        }*/
+      }
+    }
+  }
+
+  &__bar {
+    position: absolute;
+    top: 0;
+    left: 91px;
+
+    display: flex;
+    align-items: center;
+
+    float: left;
+
+    width: calc(100% - 91px);
+    height: 100%;
+
+    padding: 10px 20px;
+
+    // overflow-x: scroll;
+
+    // Mobile Override
+    @include mq($max-width: $smBreak) {
+      left: 61px;
+      width: calc(100% - 61px);
+    }
+
+    &--text {
+      min-width: 105px;
+      color: $black;
+      font-size: 16px;
+    }
+  }
+
+  &__input {
+    display: inline-block;
+    min-width: 410px;
+
+    &--field {
+      margin-right: 10px;
+      font-size: 16px;
+      color: $black;
+      border: none;
+      border-bottom: 1px solid $black;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &--rm {
+      position: relative;
+      top: 7px;
+      display: inline-block;
+
+      width: 25px;
+      height: 25px;
+
+      color: $mainBlue;
+      
+      border: 1px solid $mainBlue;
+      border-radius: 20px;
+
+      &::before {
+        position: absolute;
+        top: 11px;
+        left: 5px;
+
+        display: block;
+
+        width: 13px;
+        height: 1px;
+
+        background: $mainBlue;
+
+        content: '';
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      /* &::after {
+        position: absolute;
+        top: 5px;
+        left: 11px;
+
+        display: block;
+
+        width: 1px;
+        height: 13px;
+
+        background: $mainBlue;
+
+        content: '';
+      }*/
+    }
+  }
+}
+
+
+// react-select restyling (need to use important -_-)
+.wires-search-select {
+  display: inline-block;
+
+  min-width: 170px;
+  
+  color: $black !important;
+
+  &:focus {
+    outline: 1px solid red !important;
+  }
+
+  &__control {
+    background-color: transparent !important;
+    border: none !important;
+
+    &:hover {
+    cursor: pointer !important;
+  }
+
+    &--is-focused {
+      box-shadow: none !important;
+    }
+
+    input {
+      font-family: 'SF Pro Display' !important;
+      color: $mainBlue !important;
+    }
+  }
+
+  &__value-container {
+    padding-left: 0 !important;
+  }
+
+  &__single-value,
+  &__placeholder {
+    color: $mainBlue !important;
+  }
+
+  &__indicator-separator {
+    display: none !important;
+  }
+
+  &__indicators {
+    svg {
+      fill: $mainBlue;
+    }
+  }
+
+  &__menu {
+    position: relative;
+    z-index: 10001 !important;
+
+    margin-top: 0 !important;
+
+    background: $lightGrey !important;
+    
+    box-shadow: 2px 2px 8px 0 rgba(0,0,0,0.20) !important;
+    border: none !important;
+    border-radius: 5px !important;
+  }
+
+  &__group {
+    // outline: 1px solid blue;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  &__group-heading {
+    margin: 0 !important;
+
+    &--header {
+      position: relative;
+      margin: 10px 0 5px 25px !important;
+      color: $mainGrey;
+
+      &:before {
+        position: absolute;
+        top: -4px;
+        left: -25px;
+
+        display: block;
+
+        width: 20px;
+        height: 20px;
+
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+
+        content: '';
+      }
+
+      &.equipment {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-equipment.svg);
+        }
+      }
+
+      &.wire {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-wire.svg);
+        }
+      }
+
+      &.ipaddress {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-ipaddress.svg);
+        }
+      }
+
+      &.multicast {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-multicast.svg);
+        }
+      }
+
+      &.misc {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-misc.svg);
+        }
+      }
+
+      &.signal {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-signal.svg);
+        }
+      }
+
+      &.feed {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-feed.svg);
+        }
+      }
+
+      &.domain {
+        &::before {
+          background-image: url(../src/assets/images/wires/icon-domain.svg);
+        }
+      }
+    }
+  }
+
+  &__option {
+    padding: 5px 10px;
+    font-size: 14px !important;
+    color: $black !important;
+    cursor: pointer !important;
+
+    &--is-focused {
+      background: rgba(78, 121, 172, 0.10) !important;
+      color: $black !important;
+    }
+
+    &:hover {
+      background-color: $lightBlue !important;
+    }
+
+    &--is-selected,
+    &--is-selected:hover {
+      color: $lightGrey !important;
+      background: $mainBlue !important;
+    }
+  }
+}

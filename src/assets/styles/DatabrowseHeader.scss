@@ -1,0 +1,112 @@
+@import 'partials/variables';
+@import 'partials/utilities';
+
+.wires-header {
+  @extend .clearfix;
+  position: relative;
+
+  padding: 20px;
+
+  background: $lightBlue;
+  
+  // Mobile Override
+  @include mq($max-width: $smBreak) {
+    padding: 10px;
+  }
+
+  &--fixed {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    z-index: -1;
+
+    width: 100%;
+  }
+
+  &__headline {
+    margin: 0;
+    
+    color: $black;
+    font-size: 24px;
+    font-weight: 300;
+
+    span {
+      color: $mainGrey;
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    @include mq($min-width: 800px) {
+      max-width: calc(100% - 250px);
+    }
+  }
+
+  &__subnav {
+    position: absolute;
+    top: 24px;
+    right: 20px;
+
+    @include mq($max-width: 800px) {
+      position: static;
+      
+      margin-top: 15px;
+    }
+
+    &--selectlabel {
+      padding: 8px 0 8px 10px;
+      
+      color: $mainGrey;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 32px;
+
+      background: $white;
+      
+      border: 1px solid #E3E4E5;
+      border-radius: 5px;
+
+      span {
+        margin-right: 8px;
+      }
+    }
+
+    &--btn {
+      padding: 8px 10px;
+      margin-right: 10px;
+
+      color: $mainGrey;
+      font-size: 12px;
+      font-weight: 700;
+      
+      background: $white;
+      border: 1px solid #E3E4E5;
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      transition: transform 205ms ease;
+
+      &:last-child() {
+        margin-right: 0;
+      }
+
+      i {
+        margin-left: 5px;
+      }
+
+      img {
+        position: relative;
+        top: 2px; 
+        margin-left: 3px;
+      }
+
+      &:hover {
+        transform: translate(-1px, -1px);
+      }
+
+      &:active {
+        transform: translate(2px, 2px);
+      }
+    }
+  }
+}

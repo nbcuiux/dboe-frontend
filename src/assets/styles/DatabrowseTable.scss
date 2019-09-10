@@ -1,0 +1,396 @@
+@import 'partials/variables';
+@import 'partials/utilities';
+
+.wires-table {
+  position: relative;
+}
+
+.resultstatus {
+  position: absolute;
+  top: 84px;
+  left: 0;
+
+  z-index: 2000;
+
+  display: none;
+
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: calc(100% - 84px);
+
+  padding: 20px;
+
+  text-align: center;
+
+  background: $lightBlue;
+
+  opacity: 0;
+
+  transition: opacity 1000ms ease;
+  
+  @include mq($min-width: $xlBreak) {
+    top: 87px;
+    height: calc(100% - 87px;)
+  }
+
+  &.visible {
+    display: flex;
+    opacity: 1;
+  }
+
+  i {
+    color: #B9B9B9;
+    font-size: 48px;
+  }
+
+  &__text {
+    margin: 20px 0 0 0;
+    padding: 0;
+
+    color: #B9B9B9;
+
+    opacity: 0;
+
+    animation-name: animateSearchText;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 5s;
+
+  }
+}
+
+@keyframes animateSearchText {
+    0%   {opacity: 0;}
+    40%  {opacity: 0;}
+    50%  {opacity: 1;}
+    90%  {opacity: 1;}
+    100% {opacity: 0;}
+}
+
+.wires-body {
+  position: fixed;
+  top: 50px;
+
+  width: 100%;
+  height: calc(100vh - 50px);
+
+  .ReactTable {
+    height: calc(100vh - 182px);
+
+    margin-bottom: 50px;
+
+    border: none;
+
+    // Mobile Override
+    @include mq($max-width: 600px) {
+      height: calc(100vh - 212px);
+    }
+
+    .rt-thead {
+      background: $lightBlue;
+      border-bottom: 1px solid $borderGrey;
+
+      .rt-th {
+        position: relative;
+
+        padding: 5px 10px;
+        padding-right: 20px;
+
+        &:first-of-type {
+          padding-left: 20px;
+
+          // Mobile Override
+          @include mq($max-width: $smBreak) {
+            padding-left: 10px;
+          }
+        }
+
+
+        &:last-of-type {
+          padding-right: 20px;
+
+          // Mobile Override
+          @include mq($max-width: $smBreak) {
+            padding-right: 10px;
+          }
+        }
+
+        &::before {
+          position: absolute;
+          top: 10px;
+          right: 5px;
+
+          display: block;
+
+          width: 0; 
+          height: 0; 
+          
+          // Triangle
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid $white;
+
+          content: '';
+        }
+
+        &::after {
+          position: absolute;
+          top: 18px;
+          right: 5px;
+
+          display: block;
+
+          width: 0; 
+          height: 0; 
+          
+          // Triangle
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-top: 5px solid $white;
+
+          content: '';
+        }
+
+        &:focus {
+          outline: none;
+        }
+
+        &.disabled {
+          position: relative;
+          background: #F4F4F5; // Mathes color set in DatabrowseDB.js searchData();
+
+          &.rt-resizable-header {
+            border-top: 1px solid $borderGrey;
+          }
+
+          .rt-resizable-header-content {
+            color: #CCCCCC;
+          }
+
+          input {
+            display: none;
+          }
+
+          &::before,
+          &::after {
+            display: none;
+          }
+        }
+
+        &.-sort-asc {
+          // box-shadow: inset 0 3px 0 0 rgba(78,121,172,1);
+          box-shadow: none;
+
+          &::before {
+            border-bottom-color: $mainGrey;
+          }
+        }
+
+        &.-sort-desc {
+          // box-shadow: inset 0 -3px 0 0 rgba(78,121,172,1);
+          box-shadow: none;
+
+          &::after {
+            border-top-color: $mainGrey;
+          }
+        }
+      }
+
+      // Style for column filtering
+      &.-filters {
+        .rt-tr {
+          .rt-th {
+            padding: 10px 5px;
+
+            border-right: 1px solid $borderGrey;
+
+            &::focus {
+              outline: none;
+            }
+            &::before,
+            &::after {
+              display: none;
+            }
+
+            input {
+              padding: 5px;
+              margin: 0;
+              width: 100%;
+
+              color: $black;
+              font-size: 14px;
+            }
+
+            &.disabled {
+              position: relative;
+
+              &::before {
+                position: absolute;
+                top: 0;
+                left: 3px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                width: 100%;
+                height: 100%;
+
+                color: #999999;
+                font-size: 12px;
+                font-style: italic;
+                
+                text-align: left;
+
+                content: 'Column Not Applicable';
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .rt-resizable-header {
+      border-top: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .rt-resizable-header-content {
+      padding: 5px 0;
+      margin: 0;
+      
+      color: $mainGrey;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      text-align: left;
+
+      @include mq($min-width: $xlBreak) {
+        font-size: 14px;
+      }
+    }
+    
+    .rt-tbody {
+      padding-bottom: 5px;
+    }
+
+    // Row
+    .rt-tr-group {
+      border-bottom-color: $borderGrey;
+    }
+
+    .rt-tr {
+      &.-odd {
+        background: $white;
+      }
+    }
+
+    .rt-td {
+      padding: 10px;
+      
+      color: $black;
+      font-size: 12px;
+      
+      border-right: 1px solid $borderGrey;
+
+      @include mq($min-width: $xlBreak) {
+        font-size: 14px;
+      }
+
+      &:first-of-type {
+        padding-left: 20px;
+
+        // Mobile Override
+        @include mq($max-width: $smBreak) {
+          padding-left: 10px;
+        }
+      }
+
+      &:last-of-type {
+        padding-right: 20px;
+
+        // Mobile Override
+        @include mq($max-width: $smBreak) {
+          padding-right: 10px;
+        }
+      }
+    }
+
+    .-pagination {
+      padding: 5px;
+
+      color: $black;
+      font-size: 14px;
+
+      border-top: none;
+
+      .-btn {
+
+        background: $white;
+        box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.2);
+
+        border-radius: 4px;
+
+        &:hover {
+          background: $mainBlue;
+        }
+
+        &[disabled] {
+          color: transparent;
+          background: transparent;
+          box-shadow: none;
+
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+
+      input {
+        padding: 3px 3px 4px 3px;
+        color: $black;
+        background: $white;
+      }
+
+      select {
+        color: $black;
+      }
+    }
+  }
+
+  .rt-noData {
+    top: 84px;
+    left: 0;
+    width: 100%;
+
+    white-space: pre-line;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    height: calc(100% - 84px);
+    
+    color: #B9B9B9;
+    font-size: 24px;
+    font-weight: 300;
+    line-height: 32px;
+    font-style: italic;
+    text-align: center;
+
+    background: $lightBlue;
+
+    transform: translate(0, 0);
+
+    @include mq($min-width: $xlBreak) {
+      top: 87px;
+      height: calc(100% - 87px;)
+    }
+  }
+}
